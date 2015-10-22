@@ -1,10 +1,14 @@
 ---
 layout: post
-title: You're up and running!
+title: NSString与NSDictionary的相互转换
 ---
 
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
-
-![_config.yml]({{ site.baseurl }}/images/config.png)
-
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
+##NSString转NSDictionary
+    NSData *data = [message.body dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    NSDictionary *jsonDict= [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+## NSDictionary转NSString
+    NSDictionary *imageDict = [NSDictionary dictionaryWithObject:imageStr forKey:@"image"];
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:imageDict options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
